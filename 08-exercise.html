@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Exercises</title>
+  </head>
+  <body>
+    <script>
+      const basketball = {
+        name: 'basketball',
+        price: 2095,
+      };
+
+      console.log(basketball);
+
+      //   dot notation
+      basketball.price = 500;
+      console.log(basketball);
+
+      //   bracket notation
+      basketball['delivery-date'] = '3 days';
+      console.log(basketball);
+
+      const product1 = {
+        name: 'apple',
+        price: 149,
+      };
+
+      const product2 = {
+        name: 'apple',
+        price: 149,
+      };
+
+      function comparePrice(product1, product2) {
+        if (product1.price < product2.price) {
+          console.log(product1);
+        } else {
+          console.log(product2);
+        }
+      }
+
+      comparePrice(product1, product2);
+
+      function isSameProduct(product1, product2) {
+        if (
+          product1.name === product2.name &&
+          product1.price === product2.price
+        ) {
+          console.log(true);
+        } else {
+          console.log(false);
+        }
+      }
+
+      isSameProduct(product1, product2);
+
+      const greeting = 'Good Morning';
+
+      console.log(greeting.toLowerCase());
+      console.log(greeting.repeat(3));
+    </script>
+  </body>
+</html>

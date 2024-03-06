@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      //   const product = {
+      //     name: "socks",
+      //     price: 1090,
+      //   };
+
+      //   console.log(product);
+      //   console.log(product.name);
+      //   console.log(product.price);
+
+      //   product.name = "shoes";
+      //   console.log(product);
+
+      //   product.color = "purple";
+      //   console.log(product);
+      //   delete product.price;
+      //   console.log(product);
+
+      /* const product2 = {
+        name: "shirt",
+        "delivery-time": "1 day",
+        rating: {
+          stars: 4.3,
+          count: 87,
+        },
+        // nested object
+        fun: function function1() {
+          console.log("function inside object");
+        },
+      };
+
+      console.log(product2.name);
+      console.log(product2["delivery-time"]);
+      console.log(product2.rating.stars);
+      console.log(product2["rating"]["stars"]);
+      product2.fun();
+
+      // Javascript object notation - JSON
+      // JSON doesnt use '' and it doesnt support function
+      // JSON more universal - can be used with mutliple languages
+      // JSON used to store data
+      console.log(JSON.stringify(product2));
+      // stringify used to convert Javascript to JSON
+      const jsonString = JSON.stringify(product2);
+      console.log(JSON.parse(jsonString));
+      //   parse used to convert JSON back to Javascript */
+
+      console.log('hello'.length);
+      console.log('hello'.toUpperCase());
+
+      const object1 = {
+        message: 'hello',
+      };
+
+      const object2 = object1;
+
+      //   not fully understanding object is a reference
+      object1.message = 'Good Job';
+      console.log(object1);
+      console.log(object2);
+
+      const object3 = {
+        message: 'Good Job',
+      };
+      console.log(object3 === object1);
+      console.log(object2 === object1);
+      //   objects are references so they only compare the reference
+      //   if you wanted to compare variables within the object you would use the dot notation to compare the items within ex. object1.message
+
+      const object4 = {
+        message: 'Good Job',
+        price: 799,
+      };
+
+      //   const message = object4.message;
+      const { message, price } = object4;
+      //   destructuring - pulls the variable name out of the object and saves it to a variable of that same name
+      console.log(message + price);
+
+      const object5 = {
+        // shorthand property
+        // message: message,
+        // if property and variable name are the same you canjust use the name one
+        message,
+        // shorthand method
+        // method: function function1() {
+        //     console.log('method');
+        // }
+        method() {
+          console.log('method');
+        },
+      };
+
+      console.log(object5);
+      object5.method();
+    </script>
+  </body>
+</html>

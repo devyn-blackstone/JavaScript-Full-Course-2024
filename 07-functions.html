@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions</title>
+  </head>
+  <body>
+    <script>
+      //   function function1(x) {
+      //     console.log(x);
+      //     console.log(x + 2);
+      //   }
+      //   function1(1);
+      //   function1(3);
+
+      //   function calculateTax(cost, tax = 0.1) {
+      //     console.log(cost * tax);
+      //   }
+
+      //   calculateTax(2000);
+      //   calculateTax(5000, 0.03);
+
+      function greet(name = "there") {
+        console.log(`Hello ${name}!`);
+      }
+
+      greet("simon");
+
+      function convertToFarenheit(celsius) {
+        const farenheit = (celsius * 9) / 5 + 32;
+        return farenheit;
+        // console.log(farenheit);
+      }
+
+      function convertToCelsius(fahrenheit) {
+        const celsius = ((fahrenheit - 32) * 5) / 9;
+        return celsius;
+        // console.log(celsius);
+      }
+
+      function convertTemperature(degrees, unit) {
+        if (unit === "C") {
+          convertToFarenheit(degrees);
+          console.log(`${convertToFarenheit(degrees) + unit}`);
+        } else {
+          convertToCelsius(degrees);
+        }
+      }
+
+      convertToFarenheit(25);
+      convertToCelsius(86);
+      convertTemperature(25, "C");
+    </script>
+  </body>
+</html>
+
+<!-- command, option, J -->
