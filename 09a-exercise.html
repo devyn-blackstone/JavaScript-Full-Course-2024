@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 9 Exercises</title>
+  </head>
+  <body>
+    <button>9a</button>
+    <p></p>
+    <button class="js-button">9b</button>
+    <p></p>
+    <button onclick="displayChoice('heads')">heads</button>
+    <button onclick="displayChoice('tails')">tails</button>
+    <p class="js-display-choice"></p>
+
+    <input placeholder="NAME" onkeydown="onKeyDownDisplay(event)" />
+    <!-- event is a function of the dom? -->
+    <button class="js-submit-button" onclick="displayInput()">SUBMIT</button>
+    <p class="js-display-name"></p>
+    <script>
+      console.log(document.querySelector('button'));
+      //   selects the first button in the html
+      document.querySelector('.js-button').innerHTML = '9b done';
+      //   selects any item with the class of 'js-button' and changes anything that is currently bettwen the >< in the HTML file
+
+      function displayChoice(choice) {
+        if (choice === 'heads') {
+          document.querySelector('.js-display-choice').innerHTML =
+            'You chose: heads';
+        } else {
+          document.querySelector('.js-display-choice').innerHTML =
+            'You chose: tails';
+        }
+      }
+
+      function displayInput() {
+        document.querySelector('.js-display-name').innerHTML = `Your name is: ${
+          document.querySelector('input').value
+        }`;
+      }
+
+      function onKeyDownDisplay() {
+        // console.log(event.key);
+        // event is a built in function
+        if (event.key === 'Enter') {
+          displayInput();
+        }
+      }
+    </script>
+  </body>
+</html>
