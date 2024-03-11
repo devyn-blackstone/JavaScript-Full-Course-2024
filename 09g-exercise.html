@@ -6,6 +6,53 @@
     <title>Lesson 9 Exercises</title>
   </head>
   <body>
-    <script></script>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="subscribe()" class="js-subscribe-button">Subscribe</button>
+    <p>Amazon Shipping Calculator</p>
+    <input
+      placeholder="Cost of Order"
+      class="js-input"
+      onkeydown=";
+      handleCostKeyDown(event)"
+    />
+    <button onclick="calculate();" class="js-calculate-button">
+      Calculate
+    </button>
+    <p class="js-shipping-cost"></p>
+
+    <script>
+      function handleCostKeyDown(event) {
+        if (event.key === 'Enter') {
+          calculate();
+        }
+      }
+
+      function subscribe() {
+        const buttonElement = document.querySelector('.js-subscribe-button');
+        if (buttonElement.innerText === 'Subscribe') {
+          // innerText allows you to compare without spaces
+          buttonElement.innerHTML = 'Subscribed';
+        } else {
+          buttonElement.innerHTML = 'Subscribe';
+        }
+      }
+
+      function calculate() {
+        const inputElement = document.querySelector('.js-input');
+
+        const cost = Number((inputElement.value * 100) / 100);
+
+        if (cost < 40) {
+          document.querySelector('.js-shipping-cost').innerHTML =
+            '$' + (cost + 10).toFixed(2);
+        } else if (cost >= 40) {
+          document.querySelector('.js-shipping-cost').innerHTML =
+            '$' + cost.toFixed(2);
+        } else {
+          document.querySelector('.js-shipping-cost').innerHTML =
+            'Please enter a number value';
+        }
+      }
+    </script>
   </body>
 </html>
