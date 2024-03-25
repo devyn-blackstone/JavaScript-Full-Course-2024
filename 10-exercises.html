@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .add-to-cart {
+        background-color: rgb(255, 216, 20);
+        color: black;
+        border: none;
+        border-radius: 2em;
+        padding: 0.5em 2em;
+      }
+      .request-now {
+        background-color: black;
+        font-weight: bold;
+        color: white;
+        border: none;
+        border-radius: 0.5em;
+        padding: 1em 2em;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .schedule-for-later {
+        margin: 2em;
+        border: none;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 1em;
+        border-radius: 0.5em;
+        font-weight: bold;
+        background-color: rgb(230, 230, 230);
+      }
+
+      .light {
+        background-color: rgb(230, 230, 230);
+        border: none;
+        padding: 1em;
+        border-radius: 0.5em;
+        cursor: pointer;
+      }
+
+      .dark {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 1em;
+        border-radius: 0.5em;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="add-to-cart">Add to Cart</button>
+    <p></p>
+    <button class="request-now">Request Now</button>
+    <button class="schedule-for-later">Schedule for Later</button>
+    <p></p>
+    <button class="js-button">TEST</button>
+    <p></p>
+    <button onclick="changeColor('gaming');" class="light gaming-button">
+      Gaming
+    </button>
+    <button onclick="changeColor('music');" class="light music-button">
+      Music
+    </button>
+    <button onclick="changeColor('tech');" class="light tech-button">
+      Tech
+    </button>
+    <script>
+      //   console.log(
+      //     document.querySelector('.js-button').classList.contains('js-button')
+      //   );
+
+      function changeColor(buttonName) {
+        const className = document
+          .querySelector(`.${buttonName}-button`)
+          .classList.contains(`dark`);
+        if (className) {
+          // run function to see if any of the others have a dark
+          document
+            .querySelector(`.${buttonName}-button`)
+            .classList.remove(`dark`);
+        } else {
+          const checkClass = document.querySelector('.dark');
+          if (checkClass) {
+            checkClass.classList.remove(`dark`);
+            document
+              .querySelector(`.${buttonName}-button`)
+              .classList.add(`dark`);
+          } else {
+            document
+              .querySelector(`.${buttonName}-button`)
+              .classList.add(`dark`);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

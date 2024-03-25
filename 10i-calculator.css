@@ -1,0 +1,21 @@
+body {
+  background-color: black;
+}
+
+button {
+  border-radius: 60%;
+  border: none;
+  background-color: rgb(55, 52, 52);
+  color: white;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+}
+
+.specialKey {
+  background-color: orange;
+}
+
+.clearButton {
+  font-size: 13px;
+}
