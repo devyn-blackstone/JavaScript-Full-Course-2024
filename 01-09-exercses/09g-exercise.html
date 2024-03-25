@@ -20,6 +20,13 @@
     </button>
     <p class="js-shipping-cost"></p>
 
+    <input
+      placeholder="Type Something"
+      onkeyup="displayMessage()"
+      class="js-input2"
+    />
+    <p class="js-display-message"></p>
+
     <script>
       function handleCostKeyDown(event) {
         if (event.key === 'Enter') {
@@ -52,6 +59,13 @@
           document.querySelector('.js-shipping-cost').innerHTML =
             'Please enter a number value';
         }
+      }
+
+      function displayMessage() {
+        // grab the key that is but in the input box and display in the paragraph
+        storeKey = document.querySelector('.js-input2');
+        document.querySelector('.js-display-message').innerHTML =
+          storeKey.value;
       }
     </script>
   </body>

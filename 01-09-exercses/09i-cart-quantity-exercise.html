@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Quantity</title>
+  </head>
+  <body>
+    <h1>Cart Quantity</h1>
+    <button onclick="alert(`You have ${cartQuantity} items in your cart`)">
+      Show Quantity
+    </button>
+    <button onclick="updateCartQuantity(1)">Add to Cart</button>
+    <button onclick="updateCartQuantity(2)">Add 2 to Cart</button>
+    <button onclick="updateCartQuantity(3)">Add 3 to Cart</button>
+    <button onclick="updateCartQuantity(-1)">Remove from cart</button>
+    <button onclick="updateCartQuantity(-2)">Remove 2 from cart</button>
+    <button onclick="updateCartQuantity(-3)">Remove 3 from cart</button>
+    <button onclick="updateCartQuantity('Reset Cart')">Reset Cart</button>
+    <p class="js-display-cart-quantity"></p>
+    <script>
+      let cartQuantity = localStorage.getItem('cart quantity') || 0;
+
+      window.onload = updateCartQuantity;
+
+      function updateCartQuantity(numberToCart) {
+        // if (cartQuantity >= 10) {
+        //   // if cart has 10 or more - you cant add more to the cart
+        //   alert("The cart is full");
+        // } else if ((cartQuantity = 0)) {
+        //   // if cart has 0 you cant remove items from the cart
+        //   alert("Not enough items in cart");
+        // } else
+        if (numberToCart > 0 && cartQuantity <= 10) {
+          // if positive integer and the cart has 10 items or less add to the cart
+          cartQuantity += numberToCart;
+          if (cartQuantity > 10) {
+            // if cart quantity is now more than 10, reset cart back to 10
+            cartQuantity = 10;
+            alert(
+              `The cart is full, you can only have 10 items in your cart. Cart Quantity: ${cartQuantity}`
+            );
+            // return;
+          } else if (cartQuantity === 10) {
+          }
+        } else if (numberToCart < 0 && cartQuantity >= 0) {
+          // if negative integer and the cart has more than 0 items, add the negative number to the cart (for subtraction)
+          cartQuantity += numberToCart;
+          if (cartQuantity < 0) {
+            // if cart quantity now has less than zero, reset back to 0
+            cartQuantity = 0;
+            alert(
+              `The cart is empty, you cant have less than 0 items in your cart. Cart Quantity: ${cartQuantity}`
+            );
+            // return;
+          } else if (cartQuantity === 0) {
+          }
+        } else if (numberToCart === 'Reset Cart') {
+          cartQuantity = 0;
+          alert('Cart was reset.');
+        }
+
+        localStorage.setItem('cart quantity', cartQuantity);
+
+        document.querySelector(
+          '.js-display-cart-quantity'
+        ).innerHTML = `Cart Quantity: ${cartQuantity}`;
+      }
+    </script>
+  </body>
+</html>
