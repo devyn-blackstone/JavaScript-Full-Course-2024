@@ -1,7 +1,12 @@
-const todoList = JSON.parse(localStorage.getItem('todoList')) || {
-  name: '',
-  dueDate: '',
-};
+// const todoList = [
+//   {
+//     name: 'item 1',
+//     dueDate: '09/22/1990',
+//   },
+//   { name: 'item 2', dueDate: '09/22/1990' },
+// ];
+
+const todoList = JSON.parse(localStorage.getItem('todoListKey')) || [];
 
 renderTodoList();
 
@@ -42,7 +47,6 @@ function addTodo() {
 
   const dateInputElement = document.querySelector('.js-due-date-input');
   const dueDate = dateInputElement.value;
-
   todoList.push({
     // name: name,
     // dueDate: dueDate
@@ -51,8 +55,7 @@ function addTodo() {
     dueDate,
   });
   //   push new value to end of array
-  localStorage.setItem('todoList', JSON.stringify(name));
-
+  localStorage.setItem('todoListKey', JSON.stringify(todoList));
   inputElement.value = '';
   //  changing the info held in the value field to blank
 
