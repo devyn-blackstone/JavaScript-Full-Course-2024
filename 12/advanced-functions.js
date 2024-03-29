@@ -100,3 +100,26 @@ function displayMessage() {
     document.querySelector('.js-display-message').innerHTML = '';
   }, 2000);
 }
+
+let messages = 2;
+setInterval(function () {
+  const title = document.title;
+
+  if (title === 'Advanced Functions' && messages > 0) {
+    document.querySelector(
+      '.js-page-title'
+    ).innerHTML = `(${messages}) Messages`;
+  } else {
+    document.querySelector('.js-page-title').innerHTML = 'Advanced Functions';
+  }
+}, 1000);
+
+// onclick, run a function that adds 1 to messages or removes from messages
+
+function messageCount(param) {
+  if (param === 'add') {
+    messages++;
+  } else if (param === 'remove' && messages > 0) {
+    messages--;
+  }
+}

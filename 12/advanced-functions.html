@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       .js-start-button,
-      .js-add-button {
+      .js-add-button,
+      .js-add-message-button,
+      .js-remove-message-button {
         cursor: pointer;
       }
       .js-display-message {
@@ -13,7 +15,7 @@
       }
     </style>
 
-    <title>Advanced Functions</title>
+    <title class="js-page-title">Advanced Functions</title>
   </head>
   <body>
     <button onclick="changeButton()" class="js-start-button">START</button>
@@ -22,6 +24,13 @@
       ADD TO CART
     </button>
     <div class="js-display-message"></div>
+    <p></p>
+    <button onclick="messageCount('add');" class="js-add-message-button">
+      ADD
+    </button>
+    <button onclick="messageCount('remove');" class="js-remove-message-button">
+      REMOVE
+    </button>
     <script src="./advanced-functions.js"></script>
   </body>
 </html>
