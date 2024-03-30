@@ -164,14 +164,56 @@ buttonElement.addEventListener('click', () => {
 buttonElement.removeEventListener('click', () => {});
 // this will remove the function when the event is done
 
-const array = [1, -3, 5];
+const array = [1, -3, -1];
 
 console.log(
-  array.filter((value, index) => {
-    if (value >= 0) {
-      return true;
-    } else {
-      return false;
+  array.filter(
+    (value, index) => {
+      if (value >= 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
+    // this can also be written like this:
+    // return value >= 0;
+    // this reads: return true if statement is true else false
+  )
+);
+
+// array.map((value, index)=> {});
+
+console.log(
+  array.map((value, index) => {
+    return value * 2;
   })
 );
+// better way to write this:
+// array.map((value) => value * 2)
+// since only using 1 param dont need the "index" param
+// since only 1 line of code we dont need the {}curly brackets or the "return"
+
+const multiply = (num1, num2) => num1 * num2;
+
+console.log(multiply(2, 3));
+
+let count = 0;
+
+const countPositive = (nums) => {
+  if (nums > 0) {
+    count++;
+  }
+  console.log(count);
+
+  return count;
+};
+
+array.forEach(countPositive);
+
+const addNum = (array, num) => array.map((value) => value + num);
+
+console.log(addNum(array, 2));
+
+const removeEgg = (foods) => foods.filter((value) => value != 'egg');
+
+console.log(removeEgg(['egg', 'milk', 'egg']));
