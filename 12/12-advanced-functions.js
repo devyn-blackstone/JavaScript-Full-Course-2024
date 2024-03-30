@@ -79,16 +79,16 @@ runTwice(function () {
 
 runTwice(add);
 
-function changeButton() {
+const changeButton = () => {
   // find the element with the class of js-start-button to "finished" after 1 second
   document.querySelector('.js-start-button').innerHTML = 'LOADING...';
   setTimeout(function () {
     document.querySelector('.js-start-button').innerHTML = 'FINISHED!';
   }, 1000);
-}
+};
 let timeoutId;
 
-function displayMessage() {
+const displayMessage = () => {
   document.querySelector('.js-display-message').innerHTML = 'ADDED';
 
   clearTimeout(timeoutId);
@@ -96,7 +96,7 @@ function displayMessage() {
   timeoutId = setTimeout(function () {
     document.querySelector('.js-display-message').innerHTML = '';
   }, 2000);
-}
+};
 
 let messages = 2;
 setInterval(function () {
@@ -214,6 +214,19 @@ const addNum = (array, num) => array.map((value) => value + num);
 
 console.log(addNum(array, 2));
 
-const removeEgg = (foods) => foods.filter((value) => value != 'egg');
+let eggCount = 0;
+const removeEgg = (foods) =>
+  foods.filter((value) => {
+    if (value === 'egg') {
+      eggCount++;
+      if (eggCount > 2) {
+        return value;
+      }
+      // filter through the array and count 2 eggs, once you have counted 2 then add the next one to the array
+      // filter through foods and when you see egg - skip it, when you see egg again - skip it, when you see egg next, add it
+    } else if (value != 'egg') {
+      return value;
+    }
+  });
 
-console.log(removeEgg(['egg', 'milk', 'egg']));
+console.log(removeEgg(['egg', 'milk', 'egg', 'egg', 'egg']));
