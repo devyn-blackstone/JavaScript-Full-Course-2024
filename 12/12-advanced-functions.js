@@ -54,10 +54,7 @@ console.log('next line');
 // }, 3000);
 // built in function that takes 2 param(function, number in ms)
 
-['make dinner', 'wash dishes', 'watch survivor'].forEach(function (
-  value,
-  index
-) {
+['make dinner', 'wash dishes', 'watch survivor'].forEach((value, index) => {
   if (value === 'wash dishes') {
     return;
   }
@@ -123,3 +120,58 @@ function messageCount(param) {
     messages--;
   }
 }
+
+const regularFunction = function (param, param2) {
+  console.log('hello');
+  return 5;
+};
+
+const arrowFunction = (param, param2) => {
+  console.log('hello');
+  return 5;
+};
+
+arrowFunction();
+
+const oneParam = (param) => {
+  // when using arrow function with only 1 paramater you do not have to include the () round brackets to establish the function
+  console.log(param + 1);
+};
+
+oneParam(2);
+
+const oneLine = () => 2 + 3;
+// when only 1 line you do not have to have the {} curly brackets around the function AND you do not have to include the word "return"
+
+console.log(oneLine());
+
+const object2 = {
+  method: () => {},
+  method() {},
+  // this is the shorthand method syntax for writing a function in an object
+};
+// can use arrow function in an object
+
+const buttonElement = document.querySelector('.js-click-button');
+
+buttonElement.addEventListener('click', () => {
+  console.log('click');
+});
+// takes 2 paramaters (1,2):
+// 1 is the event, what are you "listening" for
+// 2 is the function we want to happen when the event is done
+
+buttonElement.removeEventListener('click', () => {});
+// this will remove the function when the event is done
+
+const array = [1, -3, 5];
+
+console.log(
+  array.filter((value, index) => {
+    if (value >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+);

@@ -10,19 +10,21 @@ const todoList = JSON.parse(localStorage.getItem('todoListKey')) || [];
 
 renderTodoList();
 
+document.querySelector('.js-add-todo-button').addEventListener('click', () => {
+  addTodo();
+});
+
 function renderTodoList() {
   let todoListHTML = '';
   // holds the list with the HTML elements
-  todoList.forEach(function (todo, index) {
+  todoList.forEach((todo, index) => {
     const { name, dueDate } = todo;
     // pull the items out of the list and store in their own variable
 
     const html = `
   <div>${name}</div> 
   <div>${dueDate}</div> 
-  <button onclick="
-  todoList.splice(${index}, 1);
-  renderTodoList();" class="delete-button"
+  <button class="delete-button js-delete-todo-button"
   >DELETE</button>
   `;
     // when you click the delete button it removes the [i] item and shows the updated todoList without that item
@@ -31,6 +33,19 @@ function renderTodoList() {
   });
 
   document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+
+  // const array1 = ['a', 'b', 'c'];
+
+  // array1.forEach((element, index) => console.log(element, index));
+
+  document
+    .querySelectorAll('.js-delete-todo-button')
+    .forEach((deleteButton, index) => {
+      deleteButton.addEventListener('click', () => {
+        todoList.splice(index, 1);
+        renderTodoList();
+      });
+    });
 }
 
 function addTodo() {
