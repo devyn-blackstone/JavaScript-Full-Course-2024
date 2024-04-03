@@ -1,6 +1,8 @@
-function greeting() {
-  console.log('hrllo');
-}
+// function greeting() {
+//   console.log('hrllo');
+// }
+
+const greeting = () => console.log('hello');
 
 greeting();
 
@@ -24,9 +26,11 @@ const object1 = {
 
 object1.fun();
 
-function display(param) {
-  console.log(param);
-}
+// function display(param) {
+//   console.log(param);
+// }
+
+const display = (param) => console.log(param);
 
 display(2);
 
@@ -39,12 +43,20 @@ run(function () {
 });
 // passing a function into another function
 
+// const run = () => console.log('ay');
+
+// run();
+
 setTimeout(function () {
   console.log('timeout');
   console.log('time out2');
   //   synchronous code - run line by line
 }, 3000);
 // asynchronous code - doesnt wait for this to finish before going to the next code
+// setTimeout(() => {
+//   console.log('timeout');
+//   console.log('time out2');
+// }, 3000);
 
 console.log('next line');
 // takes 2 paramaters (funciton, time before performing in ms)
@@ -77,26 +89,37 @@ runTwice(function () {
   console.log('12b');
 });
 
+// const runTwice = () => console.log('12b');
+
 runTwice(add);
 
-const changeButton = () => {
-  // find the element with the class of js-start-button to "finished" after 1 second
-  document.querySelector('.js-start-button').innerHTML = 'LOADING...';
+// find the element with the class of js-start-button to "finished" after 1 second
+const startButton = document.querySelector('.js-start-button');
+
+startButton.addEventListener('click', () => {
+  // when you click the button with the js-start-button class, change the items within the <button>THIS</button>
+  startButton.innerHTML = 'LOADING...';
+
   setTimeout(function () {
-    document.querySelector('.js-start-button').innerHTML = 'FINISHED!';
+    startButton.innerHTML = 'FINISHED!';
   }, 1000);
-};
+  // run the setTimeout function which changes the HTML after 1sec
+});
+
 let timeoutId;
 
-const displayMessage = () => {
-  document.querySelector('.js-display-message').innerHTML = 'ADDED';
+const displayButton = document.querySelector('.js-display-button');
+const displayMessage = document.querySelector('.js-display-message');
+
+displayButton.addEventListener('click', () => {
+  displayMessage.innerHTML = 'ADDED';
 
   clearTimeout(timeoutId);
 
   timeoutId = setTimeout(function () {
-    document.querySelector('.js-display-message').innerHTML = '';
+    displayMessage.innerHTML = '';
   }, 2000);
-};
+});
 
 let messages = 2;
 setInterval(function () {
@@ -111,15 +134,19 @@ setInterval(function () {
   }
 }, 1000);
 
-// onclick, run a function that adds 1 to messages or removes from messages
-
-function messageCount(param) {
-  if (param === 'add') {
+document
+  .querySelector('.js-add-message-button')
+  .addEventListener('click', () => {
     messages++;
-  } else if (param === 'remove' && messages > 0) {
-    messages--;
-  }
-}
+  });
+
+document
+  .querySelector('.js-remove-message-button')
+  .addEventListener('click', () => {
+    if (messages > 0) {
+      messages--;
+    }
+  });
 
 const regularFunction = function (param, param2) {
   console.log('hello');
