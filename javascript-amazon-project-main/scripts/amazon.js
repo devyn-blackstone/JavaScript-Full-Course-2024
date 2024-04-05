@@ -48,8 +48,40 @@ products.forEach((product) => {
       Added
     </div>
 
-    <button class="add-to-cart-button button-primary">Add to Cart</button>
+    <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id='${
+      product.id
+    }'>Add to Cart</button>
   </div>`;
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+    // using the data HTML attribute we pulled in the product name of the item that was clicked and created a new attribute.. this line of code "productName" stores the specific clicked buttons name in a key called productName (this is from the kebab case in the HTML attribute)
+
+    let matchingItem;
+    // creating a variable to store each item in the array while going through the loop
+
+    cart.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+        // run through the cart array and if item at index 0 has a productName that equals the button we clicked on product name, then we want to note this name has a duplicate entry
+      }
+    });
+
+    if (matchingItem) {
+      matchingItem.quantity++;
+      //   if there is a duplicate entry than that means there is a matchingItem and we want to use that index to update the quantity by 1
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1,
+      });
+      //   else it does not exist so we will add a new item to the cart
+    }
+
+    console.log(cart);
+  });
+});
