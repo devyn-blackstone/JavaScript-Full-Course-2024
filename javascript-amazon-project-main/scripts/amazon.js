@@ -82,6 +82,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       //   else it does not exist so we will add a new item to the cart
     }
 
-    console.log(cart);
+    let cartQuantity = 0;
+
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
+
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
   });
 });
