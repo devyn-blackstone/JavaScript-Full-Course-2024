@@ -43,7 +43,7 @@ products.forEach((product) => {
 
     <div class="product-spacer"></div>
 
-    <div class="added-to-cart">
+    <div class="added-to-cart js-added-to-cart-${product.id}">
       <img src="images/icons/checkmark.png" />
       Added
     </div>
@@ -56,9 +56,12 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+let displayMessageTimer;
+// establish a timer outside of the function so when we click we can update the variable with the timer from in the function
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
-    const productId = button.dataset.productId;
+    const { productId } = button.dataset;
     // using the data HTML attribute we pulled in the product name of the item that was clicked and created a new attribute.. this line of code "productName" stores the specific clicked buttons name in a key called productName (this is from the kebab case in the HTML attribute)
 
     let matchingItem;
@@ -71,20 +74,17 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       }
     });
 
-    const dropdownAmount = Number(
+    const quantity = Number(
       document.querySelector(`.js-quantity-selector-${productId}`).value
     );
 
-    console.log(dropdownAmount);
-
     if (matchingItem) {
-      matchingItem.quantity += dropdownAmount;
+      matchingItem.quantity += quantity;
       //   if there is a duplicate entry than that means there is a matchingItem and we want to use that index to update the quantity by 1
-      console.log(matchingItem);
     } else {
       cart.push({
-        productId: productId,
-        quantity: dropdownAmount,
+        productId,
+        quantity,
       });
       //   else it does not exist so we will add a new item to the cart
     }
@@ -96,5 +96,19 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     });
 
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+    document
+      .querySelector(`.js-added-to-cart-${productId}`)
+      .classList.add('display-message');
+
+    clearTimeout(displayMessageTimer);
+    // if there is something in the timer clear it
+
+    displayMessageTimer = setTimeout(() => {
+      // run the settimeout to remove after 2 sec
+      document
+        .querySelector(`.js-added-to-cart-${productId}`)
+        .classList.remove('display-message');
+    }, 2000);
   });
 });
