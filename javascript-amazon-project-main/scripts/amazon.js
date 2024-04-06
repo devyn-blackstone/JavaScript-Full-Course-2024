@@ -27,7 +27,7 @@ products.forEach((product) => {
     <div class="product-price">$${(product.priceCents / 100).toFixed(2)}</div>
 
     <div class="product-quantity-container">
-      <select>
+      <select class="js-quantity-selector-${product.id}">
         <option selected value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -71,13 +71,20 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       }
     });
 
+    const dropdownAmount = Number(
+      document.querySelector(`.js-quantity-selector-${productId}`).value
+    );
+
+    console.log(dropdownAmount);
+
     if (matchingItem) {
-      matchingItem.quantity++;
+      matchingItem.quantity += dropdownAmount;
       //   if there is a duplicate entry than that means there is a matchingItem and we want to use that index to update the quantity by 1
+      console.log(matchingItem);
     } else {
       cart.push({
         productId: productId,
-        quantity: 1,
+        quantity: dropdownAmount,
       });
       //   else it does not exist so we will add a new item to the cart
     }
