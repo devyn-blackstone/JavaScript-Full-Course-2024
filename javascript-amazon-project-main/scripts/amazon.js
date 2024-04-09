@@ -1,4 +1,5 @@
 import { cart } from '../data/cart.js';
+import { products } from '../data/products.js';
 // all module imports go to top of the file and we have to use the live server
 
 let productsHTML = '';
