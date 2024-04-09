@@ -1,4 +1,4 @@
-import { cart } from '../data/cart.js';
+import { cart, addToCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 // all module imports go to top of the file and we have to use the live server
 
@@ -63,56 +63,35 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 let displayMessageTimer;
 // establish a timer outside of the function so when we click we can update the variable with the timer from in the function
 
+function updateCartQuantity(productId) {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+  document
+    .querySelector(`.js-added-to-cart-${productId}`)
+    .classList.add('display-message');
+
+  clearTimeout(displayMessageTimer);
+  // if there is something in the timer clear it
+
+  displayMessageTimer = setTimeout(() => {
+    // run the settimeout to remove after 2 sec
+    document
+      .querySelector(`.js-added-to-cart-${productId}`)
+      .classList.remove('display-message');
+  }, 2000);
+}
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const { productId } = button.dataset;
     // using the data HTML attribute we pulled in the product name of the item that was clicked and created a new attribute.. this line of code "productName" stores the specific clicked buttons name in a key called productName (this is from the kebab case in the HTML attribute)
-
-    let matchingItem;
-    // creating a variable to store each item in the array while going through the loop
-
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-        // run through the cart array and if item at index 0 has a productName that equals the button we clicked on product name, then we want to note this name has a duplicate entry
-      }
-    });
-
-    const quantity = Number(
-      document.querySelector(`.js-quantity-selector-${productId}`).value
-    );
-
-    if (matchingItem) {
-      matchingItem.quantity += quantity;
-      //   if there is a duplicate entry than that means there is a matchingItem and we want to use that index to update the quantity by 1
-    } else {
-      cart.push({
-        productId,
-        quantity,
-      });
-      //   else it does not exist so we will add a new item to the cart
-    }
-
-    let cartQuantity = 0;
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
-    document
-      .querySelector(`.js-added-to-cart-${productId}`)
-      .classList.add('display-message');
-
-    clearTimeout(displayMessageTimer);
-    // if there is something in the timer clear it
-
-    displayMessageTimer = setTimeout(() => {
-      // run the settimeout to remove after 2 sec
-      document
-        .querySelector(`.js-added-to-cart-${productId}`)
-        .classList.remove('display-message');
-    }, 2000);
+    addToCart(productId);
+    updateCartQuantity(productId);
   });
 });
