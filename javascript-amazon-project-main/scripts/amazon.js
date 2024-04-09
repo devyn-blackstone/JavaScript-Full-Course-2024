@@ -1,3 +1,6 @@
+import { cart } from '../data/cart.js';
+// all module imports go to top of the file and we have to use the live server
+
 let productsHTML = '';
 
 // forEach runs through the array and the param is the index
