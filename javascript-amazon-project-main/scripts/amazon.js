@@ -61,6 +61,9 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+document.querySelector('.js-cart-quantity').innerHTML =
+  localStorage.getItem('cart quantity');
+
 let displayMessageTimer;
 // establish a timer outside of the function so when we click we can update the variable with the timer from in the function
 
@@ -71,7 +74,7 @@ function updateCartQuantity(productId) {
     cartQuantity += cartItem.quantity;
   });
 
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+  localStorage.setItem('cart quantity', cartQuantity);
 
   document
     .querySelector(`.js-added-to-cart-${productId}`)

@@ -2,11 +2,12 @@ import { cart, removeFromCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
-let cartSummaryHTML = '';
+// let cartSummaryHTML = localStorage.getItem('cart');
 
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
   let matchingProduct;
+  let cartSummaryHTML = JSON.parse(localStorage.getItem('cart'));
 
   products.forEach((product) => {
     if (productId === product.id) {
@@ -98,3 +99,6 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     container.remove();
   });
 });
+
+document.querySelector('.js-items-in-cart').innerHTML =
+  localStorage.getItem('cart quantity');
