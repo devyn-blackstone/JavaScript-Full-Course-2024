@@ -2,6 +2,8 @@ import { cart, addToCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 // all module imports go to top of the file and we have to use the live server
+document.querySelector('.js-cart-quantity').innerHTML =
+  localStorage.getItem('cart quantity');
 
 let productsHTML = '';
 
@@ -61,9 +63,6 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-document.querySelector('.js-cart-quantity').innerHTML =
-  localStorage.getItem('cart quantity');
-
 let displayMessageTimer;
 // establish a timer outside of the function so when we click we can update the variable with the timer from in the function
 
@@ -89,6 +88,9 @@ function updateCartQuantity(productId) {
       .querySelector(`.js-added-to-cart-${productId}`)
       .classList.remove('display-message');
   }, 2000);
+
+  document.querySelector('.js-cart-quantity').innerHTML =
+    localStorage.getItem('cart quantity');
 }
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
